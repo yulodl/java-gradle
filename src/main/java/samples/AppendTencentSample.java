@@ -41,8 +41,8 @@ public class AppendTencentSample {
         HttpClientBuilder hcb = HttpClientBuilder.create();
         hcb.setHttpProcessor(new ImmutableHttpProcessor(new HttpRequestInterceptor[]{new RequestContent(true), new RequestTargetHost()}));
         httpClient = hcb.build();
-        get();
-        //put();
+        //get();
+        put();
         //append();
     }
     public static void get() throws Exception{
@@ -55,10 +55,10 @@ public class AppendTencentSample {
         System.out.println(EntityUtils.toString(httpResponse.getEntity()));
     }
     public static void put() throws Exception{
-        HttpPut httpPut = new HttpPut("http://yuxd-1252375653.cn-north.myqcloud.com/put.ts");
-        FileEntity entity = new FileEntity(new File("/Users/yuxd/Downloads/wm1.ts"));
+        HttpPut httpPut = new HttpPut("http://yuxd-1252375653.cn-north.myqcloud.com/put.ico");
+        FileEntity entity = new FileEntity(new File("/Users/yuxd/Downloads/favicon.ico"));
         httpPut.setEntity(entity);
-        httpPut.setHeader(getAuthorationHeader(httpPut));
+        httpPut.setHeader(getAuthorizationHeader(httpPut));
         HttpResponse httpResponse = httpClient.execute(httpPut);
         System.out.println(httpResponse.getStatusLine());
         for (Header header : httpResponse.getAllHeaders()) {
@@ -80,7 +80,7 @@ public class AppendTencentSample {
         fis.read(b, 0, len);
         HttpPost httpPost = new HttpPost("http://yuxd-1252375653.cn-north.myqcloud.com/append.ts?append&position=" + off);
         httpPost.setEntity(new ByteArrayEntity(b));
-        httpPost.setHeader(getAuthorationHeader(httpPost));
+        httpPost.setHeader(getAuthorizationHeader(httpPost));
         HttpResponse httpResponse = httpClient.execute(httpPost);
         System.out.println(httpResponse.getStatusLine());
         for (Header header : httpResponse.getAllHeaders()) {
@@ -89,7 +89,7 @@ public class AppendTencentSample {
         System.out.println(EntityUtils.toString(httpResponse.getEntity()));
     }
 
-    private static Header getAuthorationHeader(HttpEntityEnclosingRequestBase httpRequest) throws Exception{
+    private static Header getAuthorizationHeader(HttpEntityEnclosingRequestBase httpRequest) throws Exception{
         httpRequest.setHeader("Content-Length", httpRequest.getEntity().getContentLength() + "");
         httpRequest.setHeader("Host", "yuxd-1252375653.cn-north.myqcloud.com");
         //SignKey
