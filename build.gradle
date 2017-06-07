@@ -9,6 +9,11 @@ repositories {
     mavenCentral()
 }
 
+task execute(type:JavaExec) {
+   main = mainClass
+   classpath = sourceSets.main.runtimeClasspath
+}
+
 dependencies {
     compile 'org.apache.httpcomponents:httpclient:4.+'
     compile 'commons-codec:commons-codec:1.10'
