@@ -19,7 +19,6 @@ import org.apache.http.protocol.RequestContent;
 import org.apache.http.protocol.RequestTargetHost;
 import org.apache.http.util.EntityUtils;
 
-import javax.annotation.Generated;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URLEncoder;
@@ -31,13 +30,11 @@ import java.util.Date;
  * This samples demonstrates how to upload an object by append mode
  * to Tencent COS using Java.
  */
-@Generated(value = {})
 public class AppendTencentSample {
 
     private static final String secretId = "AKID78ygNxIYaSEpFVppkV7XqyueLrDe2EJD";
     private static final String secretKey = "skU5gDZlmcMyTxNgqtoeM6jEdu463sbC";
-    private static final String appId = "1252375653";
-    private static final String HMAC_SHA1_ALGORITHM = "HmacSHA1";
+    //private static final String appId = "1252375653";
     private static HttpClient httpClient;
 
     public static void main(String[] args) throws Exception {
@@ -49,7 +46,7 @@ public class AppendTencentSample {
         //append();
     }
     public static void get() throws Exception{
-        HttpGet httpGet = new HttpGet("http://yuxd-1252375653.costj.myqcloud.com/wm.ts");
+        HttpGet httpGet = new HttpGet("http://yuxd-1252375653.costj.myqcloud.com/favicon.ico");
         HttpResponse httpResponse = httpClient.execute(httpGet);
         System.out.println(httpResponse.getStatusLine());
         for (Header header : httpResponse.getAllHeaders()) {
